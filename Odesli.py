@@ -26,7 +26,3 @@ class Odesli():
             # return AlbumResult.parse(result)
         else:
             raise NotImplementedError(f'Entities with type {resultType} are not supported yet.')
-
-
-o = Odesli()
-print(o.getByUrl('https://listen.tidal.com/track/153695018').songsByProvider['spotify'].linksByPlatform['spotify'])
