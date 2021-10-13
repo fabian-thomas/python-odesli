@@ -1,4 +1,4 @@
-from Song import Song
+from .Song import Song
 
 """
 Represents the result when a song was requested.
