@@ -1,7 +1,7 @@
 """
 Represents a song for one provider.
 
-songId:             Id of the song that's used by the provider.
+id:                 Id of the song that's used by the provider.
 provider:           The provider.
 title:              The title of the song.
 artistName:         The name of the artistName of this song.
@@ -14,9 +14,9 @@ linksByPlatform:    Dictionary, mapping platforms to links to this song.
 
 """
 class Song():
-    def __init__(self, songId, provider, title, artistName, thumbnailUrl, thumbnailWidth,
+    def __init__(self, id, provider, title, artistName, thumbnailUrl, thumbnailWidth,
             thumbnailHeight, linksByPlatform):
-        self.songId = songId
+        self.id = id
         self.provider = provider
         self.title = title
         self.artistName = artistName
@@ -31,6 +31,6 @@ class Song():
         linksByPlatform = {}
         for platform in songEntity['platforms']:
             linksByPlatform[platform] = linksByPlatformParsed[platform]
-        return Song(songEntity['id'], songEntity['apiProvider'], songEntity['title'],
-                songEntity['artistName'], songEntity['thumbnailUrl'],
-                songEntity['thumbnailWidth'], songEntity['thumbnailHeight'], linksByPlatform)
+        return Song(songEntity.get('id', ''), songEntity.get('apiProvider', ''), songEntity.get('title', ''),
+                songEntity.get('artistName', ''), songEntity.get('thumbnailUrl', ''),
+                songEntity.get('thumbnailWidth', ''), songEntity.get('thumbnailHeight', ''), linksByPlatform)
