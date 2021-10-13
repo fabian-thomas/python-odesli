@@ -1,7 +1,7 @@
 import requests
 import json
 
-from .SongResult import SongResult
+from .song.SongResult import SongResult
 
 BASE_URL = 'https://api.song.link'
 API_VERSION = 'v1-alpha.1'
