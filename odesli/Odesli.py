@@ -12,8 +12,7 @@ class Odesli():
     def __init__(self, key=None):
         self.key = key
 
-    def getByUrl(self, url):
-        params = { 'url': url }
+    def get(self, params):
         if not self.key == None:
             params['key'] = self.key
         requestResult = requests.get(f'{ROOT}/{LINKS_ENDPOINT}', params=params)
@@ -27,3 +26,14 @@ class Odesli():
             # return AlbumResult.parse(result)
         else:
             raise NotImplementedError(f'Entities with type {resultType} are not supported yet.')
+
+
+    def getByUrl(self, url):
+        return self.get({ 'url': url })
+
+    def getById(self, id, platform, type):
+        return self.get({
+            'id': id,
+            'platform': platform,
+            'type': type
+        })
