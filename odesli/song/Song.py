@@ -34,3 +34,22 @@ class Song():
         return Song(songEntity.get('id', ''), songEntity.get('apiProvider', ''), songEntity.get('title', ''),
                 songEntity.get('artistName', ''), songEntity.get('thumbnailUrl', ''),
                 songEntity.get('thumbnailWidth', ''), songEntity.get('thumbnailHeight', ''), linksByPlatform)
+
+    def __eq__(self, o):
+        if isinstance(o, Song):
+            return (self.id == o.id and self and self.provider == o.provider and self.title == o.title
+                   and self.artistName == o.artistName and self.thumbnailUrl == o.thumbnailUrl
+                   and self.thumbnailWidth == o.thumbnailWidth and self.thumbnailHeight == o.thumbnailHeight
+                   and self.linksByPlatform == o.linksByPlatform)
+        return False
+
+    def __str__(self):
+        return \
+"""id:              %s
+provider:        %s
+artistName:      %s
+thumbnailUrl:    %s
+thumbnailWidth:  %s
+thumbnailHeight: %s
+linksByPlatform: %s""" % (self.id, self.provider, self.artistName, self.thumbnailUrl, self.thumbnailWidth, self.thumbnailHeight, self.linksByPlatform)
+
