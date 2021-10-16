@@ -1,7 +1,8 @@
 import requests
 import json
 
-from .song.SongResult import SongResult
+from .entity.song.SongResult import SongResult
+from .entity.album.AlbumResult import AlbumResult
 
 BASE_URL = 'https://api.song.link'
 API_VERSION = 'v1-alpha.1'
@@ -22,8 +23,7 @@ class Odesli():
         if resultType == 'song':
             return SongResult.parse(result)
         elif resultType == 'album':
-            return None
-            # return AlbumResult.parse(result)
+            return AlbumResult.parse(result)
         else:
             raise NotImplementedError(f'Entities with type {resultType} are not supported yet.')
 
