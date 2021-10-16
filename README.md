@@ -12,14 +12,13 @@ pip install odesli
 
 ### From source
 
-Install the pypi package `build` using pip:
+Install the PyPI package `build`:
 ```bash
 pip install build
 ```
 
 Then (from the root of the repo):
 ```bash
-python -m build
 pip install dist/*.whl
 ```
 
