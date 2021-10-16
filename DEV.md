@@ -7,7 +7,9 @@
 
 ## Dependencies
 
+```bash
 pip install build twine pylint
+```
 
 ## Building
 
@@ -25,4 +27,16 @@ twine upload dist/*{VERSION}*
 
 ```bash
 pyreverse -o png odesli
+```
+
+# Testing
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+## Dependencies
+
+```bash
+pip install unittest
 ```
