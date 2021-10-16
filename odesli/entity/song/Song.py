@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from ..Entity import Entity
 
 """
@@ -25,8 +27,8 @@ class Song(Entity):
         return 'song'
 
     @staticmethod
-    def parse(songEntity, linksByPlatformParsed):
-        return Entity.parse(songEntity, linksByPlatformParsed, Song)
+    def parse(rawSongEntity, linksByPlatform) -> Song:
+        return Song(*Entity.parse(rawSongEntity, linksByPlatform))
 
     def __eq__(self, o):
         if isinstance(o, Song):

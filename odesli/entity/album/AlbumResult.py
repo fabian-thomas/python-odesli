@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from ..EntityResult import EntityResult
 from .Album import Album
 
@@ -18,6 +20,6 @@ class AlbumResult(EntityResult):
         self.albumsByProvider = albumsByProvider
 
     @staticmethod
-    def parse(result):
+    def parse(result) -> AlbumResult:
         return AlbumResult(*super(AlbumResult, AlbumResult).parse(result, Album))
 

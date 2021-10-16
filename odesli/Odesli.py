@@ -3,6 +3,7 @@ import json
 
 from .entity.song.SongResult import SongResult
 from .entity.album.AlbumResult import AlbumResult
+from .entity.EntityResult import EntityResult
 
 BASE_URL = 'https://api.song.link'
 API_VERSION = 'v1-alpha.1'
@@ -13,7 +14,7 @@ class Odesli():
     def __init__(self, key=None):
         self.key = key
 
-    def get(self, params):
+    def __get(self, params) -> EntityResult:
         if not self.key == None:
             params['key'] = self.key
         requestResult = requests.get(f'{ROOT}/{LINKS_ENDPOINT}', params=params)
@@ -28,11 +29,11 @@ class Odesli():
             raise NotImplementedError(f'Entities with type {resultType} are not supported yet.')
 
 
-    def getByUrl(self, url):
-        return self.get({ 'url': url })
+    def getByUrl(self, url) -> EntityResult:
+        return self.__get({ 'url': url })
 
-    def getById(self, id, platform, type):
-        return self.get({
+    def getById(self, id, platform, type) -> EntityResult:
+        return self.__get({
             'id': id,
             'platform': platform,
             'type': type

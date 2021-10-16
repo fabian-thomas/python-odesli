@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from ..EntityResult import EntityResult
 from .Song import Song
 
@@ -18,6 +20,6 @@ class SongResult(EntityResult):
         self.songsByProvider = songsByProvider
 
     @staticmethod
-    def parse(result):
+    def parse(result) -> SongResult:
         return SongResult(*super(SongResult, SongResult).parse(result, Song))
 

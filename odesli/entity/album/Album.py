@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from ..Entity import Entity
 
 """
@@ -25,8 +27,8 @@ class Album(Entity):
         return 'album'
 
     @staticmethod
-    def parse(albumEntity, linksByPlatformParsed):
-        return Entity.parse(albumEntity, linksByPlatformParsed, Album)
+    def parse(rawAlbumEntity, linksByPlatform) -> Album:
+        return Album(*Entity.parse(rawAlbumEntity, linksByPlatform))
 
     def __eq__(self, o):
         if isinstance(o, Album):

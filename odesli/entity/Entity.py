@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class Entity():
     def __init__(self, id, provider, title, artistName, thumbnailUrl, thumbnailWidth,
             thumbnailHeight, linksByPlatform):
@@ -15,14 +17,14 @@ class Entity():
 
 
     @staticmethod
-    def parse(entity, linksByPlatformParsed, initClass):
+    def parse(rawEntity, linksByPlatform):
         # copy matching links for this songs platforms
-        linksByPlatform = {}
-        for platform in entity['platforms']:
-            linksByPlatform[platform] = linksByPlatformParsed[platform]
-        return initClass(entity.get('id', ''), entity.get('apiProvider', ''), entity.get('title', ''),
-                entity.get('artistName', ''), entity.get('thumbnailUrl', ''),
-                entity.get('thumbnailWidth', ''), entity.get('thumbnailHeight', ''), linksByPlatform)
+        links = {}
+        for platform in rawEntity['platforms']:
+            links[platform] = linksByPlatform[platform]
+        return (rawEntity.get('id', ''), rawEntity.get('apiProvider', ''), rawEntity.get('title', ''),
+                rawEntity.get('artistName', ''), rawEntity.get('thumbnailUrl', ''),
+                rawEntity.get('thumbnailWidth', ''), rawEntity.get('thumbnailHeight', ''), links)
 
     def __eq__(self, o):
         if isinstance(o, Entity):

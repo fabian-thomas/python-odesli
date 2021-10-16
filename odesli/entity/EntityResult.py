@@ -1,8 +1,8 @@
-from .Entity import Entity
+from __future__ import annotations
 
 class EntityResult():
     @staticmethod
-    def parse(result, initClass):
+    def parse(result, entityInitClass):
         # pre-process the returned links
         linksByPlatform = {}
         for platform in result['linksByPlatform']:
@@ -11,7 +11,7 @@ class EntityResult():
         requestedEntity = None
         entityByProvider = {}
         for entityId in result['entitiesByUniqueId']:
-            entity = Entity.parse(result['entitiesByUniqueId'][entityId], linksByPlatform, initClass)
+            entity = entityInitClass.parse(result['entitiesByUniqueId'][entityId], linksByPlatform)
             entityByProvider[entity.provider] = entity
             if entityId == result['entityUniqueId']:
                 requestedEntity = entity
